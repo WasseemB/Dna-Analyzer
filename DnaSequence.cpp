@@ -25,7 +25,6 @@ DnaSequence::DnaSequence(const std::string &sequence) {
     size_t sequence_len = sequence.length();
     this->m_sequence = new char[sequence_len + 1];
     strcpy(this->m_sequence, sequence.c_str());
-
 }
 
 DnaSequence::~DnaSequence() {
@@ -148,7 +147,6 @@ char DnaSequence::getOpposite(char nucl) {
         pair = 'G';
     else if (nucl == 'G')
         pair = 'C';
-
     return pair;
 
 }

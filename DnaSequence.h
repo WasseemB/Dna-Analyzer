@@ -37,6 +37,7 @@ public:
 
     DnaSequence generatePair();
 
+    // generate ooposite base::pair.
     static char getOpposite(char nucl);
 
     inline char *getSequence() const {
@@ -44,7 +45,7 @@ public:
     }
 
     size_t getSequenceLength() const;
-
+    // check validation of sequence (ACGT)
     bool isValid(const char *sequence);
 
 
