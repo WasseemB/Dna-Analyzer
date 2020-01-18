@@ -29,7 +29,7 @@ DnaSequence::DnaSequence(const std::string &sequence) {
 }
 
 DnaSequence::~DnaSequence() {
-    delete []this->m_sequence;
+    delete[]this->m_sequence;
 
 }
 
@@ -52,7 +52,7 @@ DnaSequence::DnaSequence(const DnaSequence &dnaSequence) {
         std::cout << "copy operator dna";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
-    delete []this->m_sequence;
+    delete[]this->m_sequence;
     size_t sequence_len = strlen(dnaSequence.getSequence());
     this->m_sequence = new char[sequence_len];
     strcpy(this->m_sequence, dnaSequence.getSequence());
@@ -78,7 +78,7 @@ DnaSequence &DnaSequence::operator=(const char *sequence) {
         std::cout << "copy operator char";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
-    delete []this->m_sequence;
+    delete[]this->m_sequence;
     size_t sequence_len = strlen(sequence);
     this->m_sequence = new char[sequence_len];
     strcpy(this->m_sequence, sequence);
@@ -90,7 +90,7 @@ DnaSequence &DnaSequence::operator=(const std::string &sequence) {
         std::cout << "copy operator string";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
-    delete []this->m_sequence;
+    delete[]this->m_sequence;
     size_t sequence_len = sequence.length();
     this->m_sequence = new char[sequence_len + 1];
     strcpy(this->m_sequence, sequence.c_str());
@@ -102,7 +102,7 @@ size_t DnaSequence::getSequenceLength() const {
 }
 
 bool DnaSequence::operator==(const DnaSequence &rhs) const {
-    return strcmp(this->m_sequence, rhs.m_sequence);
+    return strcmp(this->m_sequence, rhs.m_sequence) == 0;
 }
 
 bool DnaSequence::operator!=(const DnaSequence &rhs) const {
