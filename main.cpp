@@ -1,10 +1,12 @@
 #include <iostream>
 #include "DnaSequence.h"
 #include <gtest/gtest.h>
+#include "File.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
+
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
@@ -44,4 +46,27 @@ TEST(DnaSequence, checkCurrentIndex) {
 TEST(DnaSequence, checkIndexOutOfRange) {
     DnaSequence dnaSequence("AGT");
     ASSERT_THROW(dnaSequence[4], std::out_of_range);
+}
+
+TEST(DnaSequence, sliceString) {
+    DnaSequence dnaSequence("AGTTGAAGTTGA");
+    ASSERT_EQ(dnaSequence.getSlicedSequence(1, 4), "GTT");
+}
+
+TEST(DnaSequence, reversePair) {
+    DnaSequence dnaSequence("GTGC");
+    ASSERT_STREQ(dnaSequence.reversePair().getSequence(), "GCAC");
+}
+
+TEST(File, readFile) {
+    File f;
+    string in = "this a read and write test";
+    f.writeFile("output", in.c_str());
+    string out = f.readFile("output");
+    ASSERT_EQ(in, out);
+}
+
+TEST(DnaSequence, seqFind) {
+    DnaSequence dnaSequence("AGTCGAC");
+    ASSERT_EQ(dnaSequence.findSubSequence("TCG"), 2);
 }

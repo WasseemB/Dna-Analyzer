@@ -4,7 +4,9 @@
 
 #include <cstring>
 #include <iostream>
+#include <sstream>
 #include "DnaSequence.h"
+#include<bits/stdc++.h>
 
 
 DnaSequence::DnaSequence(const char *sequence) {
@@ -150,3 +152,40 @@ char DnaSequence::getOpposite(char nucl) {
     return pair;
 
 }
+
+std::string DnaSequence::getSlicedSequence(size_t start, size_t end) const {
+    std::string slicedString = this->m_sequence;
+    slicedString = slicedString.substr(start, end - 1);
+    return slicedString;
+}
+
+DnaSequence DnaSequence::reversePair() {
+    std::stringstream ss;
+    std::string reveresedString(this->generatePair().getSequence());
+    size_t len = reveresedString.length();
+    size_t n = len - 1;
+    size_t i = 0;
+    for (; i < (len / 2); i++) {
+        //Using the swap method to switch values at each index
+        char temp = reveresedString[i];
+        reveresedString[i] = reveresedString[n];
+        reveresedString[n] = temp;
+        n = n - 1;
+
+    }
+    return DnaSequence(reveresedString);
+}
+
+size_t DnaSequence::findSubSequence(const std::string &sub) const {
+    size_t i = 0;
+    size_t subLength = sub.length();
+    std::cout << subLength << std::endl;
+    size_t seqLength = this->getSequenceLength();
+    for (; i < seqLength; i++) {
+        if (sub == this->getSlicedSequence(i, subLength + 1)) {
+            return i;
+        }
+    }
+    return -1;
+}
+

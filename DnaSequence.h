@@ -37,14 +37,21 @@ public:
 
     DnaSequence generatePair();
 
+    DnaSequence reversePair();
+
+    size_t findSubSequence(const std::string& sub) const;
+
     // generate ooposite base::pair.
     static char getOpposite(char nucl);
 
-    inline char *getSequence() const {
+    inline const char *getSequence() const {
         return m_sequence;
     }
 
+    std::string getSlicedSequence(size_t star, size_t end) const;
+
     size_t getSequenceLength() const;
+
     // check validation of sequence (ACGT)
     bool isValid(const char *sequence);
 
