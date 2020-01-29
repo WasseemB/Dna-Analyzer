@@ -7,6 +7,7 @@
 
 #include <string>
 #include <ostream>
+#include <vector>
 
 class DnaSequence {
 
@@ -39,7 +40,6 @@ public:
 
     DnaSequence reversePair();
 
-    size_t findSubSequence(const std::string& sub) const;
 
     // generate ooposite base::pair.
     static char getOpposite(char nucl);
@@ -50,10 +50,18 @@ public:
 
     std::string getSlicedSequence(size_t star, size_t end) const;
 
+    int findSubSequence(const std::string &sub, int start = 0) const;
+
+    int getSubSequenceCount(const std::string &sub) const;
+
     size_t getSequenceLength() const;
+
+    std::vector<int> findAllSubSequence(const std::string &sub) const;
 
     // check validation of sequence (ACGT)
     bool isValid(const char *sequence);
+
+    std::vector<std::string> findConsensus() const;
 
 
 private:

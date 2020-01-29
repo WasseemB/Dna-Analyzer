@@ -5,9 +5,8 @@
 #include <cstring>
 #include <iostream>
 #include <sstream>
+#include <iterator>
 #include "DnaSequence.h"
-#include<bits/stdc++.h>
-
 
 DnaSequence::DnaSequence(const char *sequence) {
     if (!isValid(sequence)) {
@@ -161,31 +160,80 @@ std::string DnaSequence::getSlicedSequence(size_t start, size_t end) const {
 
 DnaSequence DnaSequence::reversePair() {
     std::stringstream ss;
-    std::string reveresedString(this->generatePair().getSequence());
-    size_t len = reveresedString.length();
+    std::string reversedString(this->generatePair().getSequence());
+    size_t len = reversedString.length();
     size_t n = len - 1;
     size_t i = 0;
     for (; i < (len / 2); i++) {
         //Using the swap method to switch values at each index
-        char temp = reveresedString[i];
-        reveresedString[i] = reveresedString[n];
-        reveresedString[n] = temp;
+        char temp = reversedString[i];
+        reversedString[i] = reversedString[n];
+        reversedString[n] = temp;
         n = n - 1;
 
     }
-    return DnaSequence(reveresedString);
+    return DnaSequence(reversedString);
 }
 
-size_t DnaSequence::findSubSequence(const std::string &sub) const {
-    size_t i = 0;
-    size_t subLength = sub.length();
-    std::cout << subLength << std::endl;
-    size_t seqLength = this->getSequenceLength();
+int DnaSequence::findSubSequence(const std::string &sub, int start) const {
+    int i = start;
+    int subLength = int(sub.length());
+    int seqLength = int(this->getSequenceLength());
     for (; i < seqLength; i++) {
         if (sub == this->getSlicedSequence(i, subLength + 1)) {
             return i;
         }
     }
     return -1;
+}
+
+int DnaSequence::getSubSequenceCount(const std::string &sub) const {
+    int i = 0;
+    int subLength = int(sub.length());
+    int seqLength = int(this->getSequenceLength());
+    int count = 0;
+    for (; i < seqLength; i++) {
+        if (sub == this->getSlicedSequence(i, subLength + 1)) {
+            count++;
+        }
+    }
+    return count;
+}
+
+std::vector<int> DnaSequence::findAllSubSequence(const std::string &sub) const {
+    std::vector<int> startIndex;
+    int res = findSubSequence(sub);
+    while (res > 0) {
+        startIndex.push_back(res);
+        res = findSubSequence(sub, res + 1);
+    }
+
+    return startIndex;
+}
+
+std::vector<std::string> DnaSequence::findConsensus() const {
+    std::vector<std::string> result;
+    std::vector<int> startIndex = findAllSubSequence("ATG");
+    std::vector<int> endIndex = findAllSubSequence("TAG");
+    std::vector<int> endIndex1 = findAllSubSequence("TAA");
+    std::vector<int> endIndex2 = findAllSubSequence("TGA");
+    endIndex.insert(endIndex.end(), endIndex1.begin(), endIndex1.end());
+    endIndex.insert(endIndex.end(), endIndex2.begin(), endIndex2.end());
+//    std::copy(startIndex.begin(),
+//              startIndex.end(),
+//              std::ostream_iterator<int>(std::cout, " "));
+    std::cout <<" " << std::endl;
+    size_t i = 0;
+    size_t j = 0;
+    for (; i < startIndex.size(); i++) {
+        for (j = 0; j < endIndex.size(); j++) {
+            //std::cout << startIndex[i] << " " << endIndex[j] << std::endl;
+            if ((endIndex[j] - startIndex[i]) % 3 == 0) {
+//                std::cout << this->getSlicedSequence(startIndex[i], endIndex[j]+3) << std::endl;
+                result.push_back(this->getSlicedSequence(i, j+2));
+            }
+        }
+    }
+    return result;
 }
 
