@@ -154,7 +154,7 @@ char DnaSequence::getOpposite(char nucl) {
 
 std::string DnaSequence::getSlicedSequence(size_t start, size_t end) const {
     std::string slicedString = this->m_sequence;
-    slicedString = slicedString.substr(start, end - 1);
+    slicedString = slicedString.substr(start, end);
     return slicedString;
 }
 
@@ -180,7 +180,7 @@ int DnaSequence::findSubSequence(const std::string &sub, int start) const {
     int subLength = int(sub.length());
     int seqLength = int(this->getSequenceLength());
     for (; i < seqLength; i++) {
-        if (sub == this->getSlicedSequence(i, subLength + 1)) {
+        if (sub == this->getSlicedSequence(i, subLength)) {
             return i;
         }
     }
@@ -193,7 +193,7 @@ int DnaSequence::getSubSequenceCount(const std::string &sub) const {
     int seqLength = int(this->getSequenceLength());
     int count = 0;
     for (; i < seqLength; i++) {
-        if (sub == this->getSlicedSequence(i, subLength + 1)) {
+        if (sub == this->getSlicedSequence(i, subLength)) {
             count++;
         }
     }
@@ -203,7 +203,7 @@ int DnaSequence::getSubSequenceCount(const std::string &sub) const {
 std::vector<int> DnaSequence::findAllSubSequence(const std::string &sub) const {
     std::vector<int> startIndex;
     int res = findSubSequence(sub);
-    while (res > 0) {
+    while (res != -1) {
         startIndex.push_back(res);
         res = findSubSequence(sub, res + 1);
     }
@@ -219,18 +219,14 @@ std::vector<std::string> DnaSequence::findConsensus() const {
     std::vector<int> endIndex2 = findAllSubSequence("TGA");
     endIndex.insert(endIndex.end(), endIndex1.begin(), endIndex1.end());
     endIndex.insert(endIndex.end(), endIndex2.begin(), endIndex2.end());
-//    std::copy(startIndex.begin(),
-//              startIndex.end(),
-//              std::ostream_iterator<int>(std::cout, " "));
-    std::cout <<" " << std::endl;
+
     size_t i = 0;
     size_t j = 0;
     for (; i < startIndex.size(); i++) {
         for (j = 0; j < endIndex.size(); j++) {
-            //std::cout << startIndex[i] << " " << endIndex[j] << std::endl;
             if ((endIndex[j] - startIndex[i]) % 3 == 0) {
-//                std::cout << this->getSlicedSequence(startIndex[i], endIndex[j]+3) << std::endl;
-                result.push_back(this->getSlicedSequence(i, j+2));
+                //std::cout << this->getSlicedSequence(startIndex[i],endIndex[j]+2) << std::endl;
+                result.push_back(this->getSlicedSequence(startIndex[i], endIndex[j] + 2));
             }
         }
     }

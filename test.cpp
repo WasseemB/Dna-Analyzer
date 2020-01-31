@@ -52,7 +52,7 @@ TEST(DnaSequence, checkIndexOutOfRange) {
 
 TEST(DnaSequence, sliceString) {
     DnaSequence dnaSequence("AGTTGAAGTTGA");
-    ASSERT_EQ(dnaSequence.getSlicedSequence(1, 4), "GTT");
+    ASSERT_EQ(dnaSequence.getSlicedSequence(0, 3), "AGT");
 }
 
 TEST(DnaSequence, reversePair) {
@@ -90,18 +90,19 @@ TEST(DnaSequence, seqCount) {
 
 TEST(DnaSequence, seqSub) {
     DnaSequence dnaSequence("AGTCGACGTCAAGTC");
-    ASSERT_THAT(dnaSequence.findAllSubSequence("GTC"), testing::ElementsAre(1, 7, 12));
+    ASSERT_THAT(dnaSequence.findAllSubSequence("AGT"), testing::ElementsAre(0, 11));
 }
 
-//TEST(DnaSequence, cons) {
-//    DnaSequence dnaSequence("AATGTAGTAGTAATGA");
-//    vector<string> res = dnaSequence.findConsensus();
-//    vector<string> expectedRes;
-//    expectedRes.push_back("ATGTAG");
-//    expectedRes.push_back("ATGTAGTAG");
-//    expectedRes.push_back("ATGTAGTAGTAA");
-//    expectedRes.push_back("ATGTAGTAGTAATGA");
-//    ASSERT_THAT(res, testing::ElementsAreArray(expectedRes));
-//
-//}
+TEST(DnaSequence, cons) {
+    DnaSequence dnaSequence("AATGTAGTAGTAATGA");
+    vector<string> res = dnaSequence.findConsensus();
+    vector<string> expectedRes;
+    expectedRes.push_back("ATGTAG");
+    expectedRes.push_back("ATGTAGTAG");
+    expectedRes.push_back("ATGTAGTAGTAA");
+    expectedRes.push_back("ATGTAGTAGTAATGA");
+    ASSERT_THAT(res, ::testing::ContainerEq(expectedRes));
+
+
+}
 
