@@ -70,17 +70,17 @@ TEST(File, readFile) {
 
 TEST(DnaSequence, seqFind) {
     DnaSequence dnaSequence("AGTCGAC");
-    ASSERT_EQ(dnaSequence.findSubSequence("TCG"), 2);
+    ASSERT_EQ(dnaSequence.find("TCG"), 2);
 }
 
 TEST(DnaSequence, seqFindF) {
     DnaSequence dnaSequence("AGTCGAC");
-    ASSERT_NE(dnaSequence.findSubSequence("AAA"), 2);
+    ASSERT_NE(dnaSequence.find("AAA"), 2);
 }
 
 TEST(DnaSequence, seqFindFT) {
     DnaSequence dnaSequence("AGTCGAC");
-    ASSERT_EQ(dnaSequence.findSubSequence("TTT"), -1);
+    ASSERT_EQ(dnaSequence.find("TTT"), -1);
 }
 
 TEST(DnaSequence, seqCount) {
@@ -90,7 +90,7 @@ TEST(DnaSequence, seqCount) {
 
 TEST(DnaSequence, seqSub) {
     DnaSequence dnaSequence("AGTCGACGTCAAGTC");
-    ASSERT_THAT(dnaSequence.findAllSubSequence("AGT"), testing::ElementsAre(0, 11));
+    ASSERT_THAT(dnaSequence.findAll("AGT"), testing::ElementsAre(0, 11));
 }
 
 TEST(DnaSequence, cons) {
@@ -102,7 +102,5 @@ TEST(DnaSequence, cons) {
     expectedRes.push_back("ATGTAGTAGTAA");
     expectedRes.push_back("ATGTAGTAGTAATGA");
     ASSERT_THAT(res, ::testing::ContainerEq(expectedRes));
-
-
 }
 

@@ -175,7 +175,7 @@ DnaSequence DnaSequence::reversePair() {
     return DnaSequence(reversedString);
 }
 
-int DnaSequence::findSubSequence(const std::string &sub, int start) const {
+int DnaSequence::find(const std::string &sub, int start) const {
     int i = start;
     int subLength = int(sub.length());
     int seqLength = int(this->getSequenceLength());
@@ -200,12 +200,12 @@ int DnaSequence::getSubSequenceCount(const std::string &sub) const {
     return count;
 }
 
-std::vector<int> DnaSequence::findAllSubSequence(const std::string &sub) const {
+std::vector<int> DnaSequence::findAll(const std::string &sub) const {
     std::vector<int> startIndex;
-    int res = findSubSequence(sub);
+    int res = find(sub);
     while (res != -1) {
         startIndex.push_back(res);
-        res = findSubSequence(sub, res + 1);
+        res = find(sub, res + 1);
     }
 
     return startIndex;
@@ -213,10 +213,10 @@ std::vector<int> DnaSequence::findAllSubSequence(const std::string &sub) const {
 
 std::vector<std::string> DnaSequence::findConsensus() const {
     std::vector<std::string> result;
-    std::vector<int> startIndex = findAllSubSequence("ATG");
-    std::vector<int> endIndex = findAllSubSequence("TAG");
-    std::vector<int> endIndex1 = findAllSubSequence("TAA");
-    std::vector<int> endIndex2 = findAllSubSequence("TGA");
+    std::vector<int> startIndex = findAll("ATG");
+    std::vector<int> endIndex = findAll("TAG");
+    std::vector<int> endIndex1 = findAll("TAA");
+    std::vector<int> endIndex2 = findAll("TGA");
     endIndex.insert(endIndex.end(), endIndex1.begin(), endIndex1.end());
     endIndex.insert(endIndex.end(), endIndex2.begin(), endIndex2.end());
 

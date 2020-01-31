@@ -16,8 +16,8 @@ int main() {
     DnaSequence dnaSequence("AATGTAGATAGTAATGA");
     //  std::cout << dnaSequence.getSlicedSequence(0,4) << std::endl;
 //    DnaSequence dnaSequence("AGTCGACGTCAAGTC");
-//    std::cout << dnaSequence.findSubSequence("AGT") << std::endl;
-//    print(dnaSequence.findAllSubSequence("AGT"));
+//    std::cout << dnaSequence.find("AGT") << std::endl;
+//    print(dnaSequence.findAll("AGT"));
     //testing::ElementsAre(1, 7, 12))
     std::vector<std::string> res = dnaSequence.findConsensus();
     print(res);

@@ -50,13 +50,13 @@ public:
 
     std::string getSlicedSequence(size_t star, size_t end) const;
 
-    int findSubSequence(const std::string &sub, int start = 0) const;
+    int find(const std::string &sub, int start = 0) const;
 
     int getSubSequenceCount(const std::string &sub) const;
 
     size_t getSequenceLength() const;
 
-    std::vector<int> findAllSubSequence(const std::string &sub) const;
+    std::vector<int> findAll(const std::string &sub) const;
 
     // check validation of sequence (ACGT)
     bool isValid(const char *sequence);
