@@ -1,9 +1,20 @@
 # TARGET name must be from inside the directory
+all = main test
 TARGET=main
-# all .cpp files in this directory are my sources
-SOURCES=$(wildcard *.cpp)
+TEST=test
 
+# all .cpp files in this directory are my sources
+# SOURCES=$(wildcard *.cpp)
+SOURCES = $(filter-out test.cpp, $(wildcard *.cpp))
 OBJS=$(SOURCES:.cpp=.o)
+
+SOURCES_TEST = $(filter-out main.cpp, $(wildcard *.cpp))
+OBJS_TEST=$(SOURCES_TEST:.cpp=.o)
+
+
+
+
+
 
 INC_DIR=../include
 
@@ -22,6 +33,7 @@ LDLIBS = -lgtest -lgtest_main -pthread
 
 # Does the compiling automatically
 $(TARGET): $(OBJS)
+$(TEST): $(OBJS_TEST)
 
 include .depends
 
@@ -29,14 +41,18 @@ include .depends
 	$(CC) -MM -I$(INC_DIR) $(SOURCES) > .depends
 
 clean:
-	rm -f $(OBJS) $(TARGET) .depends
+	rm -f $(OBJS) $(OBJS_TEST) $(TARGET) $(TEST) .depends
 
 run: $(TARGET)
 	./$(TARGET)
-
+	
 # Do not forget to add '-g' to CFLAGS
 gdb: $(TARGET)
 	gdb -q ./$(TARGET)
 
 check: $(TARGET)
 	valgrind ./$(TARGET)
+	
+test: $(TEST)
+	$(CC) -g $(OBJS_TEST) $(LDLIBS) -o $(TEST)
+	./$(TEST)

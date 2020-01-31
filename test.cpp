@@ -9,9 +9,6 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-
-////    for (size_t i = 0; i < res.size(); i++)
-////        cout << res[i] << endl;
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
