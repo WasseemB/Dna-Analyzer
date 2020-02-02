@@ -5,18 +5,14 @@ TEST=test
 
 # all .cpp files in this directory are my sources
 # SOURCES=$(wildcard *.cpp)
-SOURCES = $(filter-out test.cpp, $(wildcard *.cpp))
+SOURCES = $(filter-out test.cpp, $(wildcard *.cpp)) $(wildcard */*.cpp)
 OBJS=$(SOURCES:.cpp=.o)
 
-SOURCES_TEST = $(filter-out main.cpp, $(wildcard *.cpp))
+SOURCES_TEST = $(filter-out main.cpp, $(wildcard *.cpp)) $(wildcard */*.cpp)
 OBJS_TEST=$(SOURCES_TEST:.cpp=.o)
 
 
-
-
-
-
-INC_DIR=../include
+INC_DIR= Commands/
 
 # CC is a a reserved word, the compiler you use, gcc for C and g++ for C++
 CC=g++
@@ -26,8 +22,6 @@ CFLAGS=-pedantic -Wall -Werror -Wconversion -ansi -g -I$(INC_DIR)
 CXXFLAGS=$(CFLAGS)
 LDFLAGS= -g
 LDLIBS = -lgtest -lgtest_main -pthread
-
-
 # If there is a file that you want to compile that is in your directory named clearn run gdb, it will ignore when calling makefile
 .PHONY: clean run gdb
 

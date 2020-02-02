@@ -3,23 +3,32 @@
 //
 
 #include <iostream>
-#include "DnaSequence.h"
+#include "CLI.h"
+#include "CommandParser.h"
+#include "Commands/CommandExecuter.h"
 #include <vector>
 
 void print(std::vector<std::string> input) {
-    for (int i = 0; i < input.size(); i++) {
+    for (size_t i = 0; i < input.size(); i++) {
         std::cout << input[i] << " ";
     }
+    std::cout << std::endl;
 }
 
 int main() {
-    DnaSequence dnaSequence("AATGTAGATAGTAATGA");
-    //  std::cout << dnaSequence.getSlicedSequence(0,4) << std::endl;
-//    DnaSequence dnaSequence("AGTCGACGTCAAGTC");
-//    std::cout << dnaSequence.find("AGT") << std::endl;
-//    print(dnaSequence.findAll("AGT"));
-    //testing::ElementsAre(1, 7, 12))
-    std::vector<std::string> res = dnaSequence.findConsensus();
-    print(res);
-//    return 0;
+    CLI cli;
+    CommandParser parser;
+    std::string data;
+    std::vector<std::string> commands;
+    while (true && data != "q") {
+        data = cli.input();
+        commands = parser.parse(data);
+        print(commands);
+        Command *command = CommandExecuterFactory::executeCommand(commands);
+        command->run();
+    }
+
+    std::cout << "Goodbye.\n";
+    return 0;
+
 }

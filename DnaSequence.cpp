@@ -52,7 +52,7 @@ DnaSequence::DnaSequence(const DnaSequence &dnaSequence) {
         std::cout << "copy operator dna";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
-    delete[]this->m_sequence;
+//    delete[]this->m_sequence;
     size_t sequence_len = strlen(dnaSequence.getSequence());
     this->m_sequence = new char[sequence_len];
     strcpy(this->m_sequence, dnaSequence.getSequence());
