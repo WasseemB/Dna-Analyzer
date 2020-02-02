@@ -5,7 +5,7 @@
 #include <iostream>
 #include "DnaContainer.h"
 
-std::vector<std::pair<size_t, MetaDnaSequence *> > DnaContainer::s_container;
+std::vector<std::pair<size_t, MetaDnaSequence*> > DnaContainer::s_container;
 
 void DnaContainer::addDna(size_t id, MetaDnaSequence *metaDnaSequence) {
     std::pair<size_t, MetaDnaSequence *> newPair;

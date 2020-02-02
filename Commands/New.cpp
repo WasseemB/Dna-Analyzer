@@ -14,11 +14,9 @@ New::New(std::vector<std::string> args) {
         MetaDnaSequence metaDnaSequence(&dnaSequence);
         DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
     } else {
-        MetaDnaSequence metaDnaSequence(&dnaSequence,args[2]);
+        MetaDnaSequence metaDnaSequence(&dnaSequence, args[2]);
         DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
     }
-
-
 }
 
 void New::run() {
