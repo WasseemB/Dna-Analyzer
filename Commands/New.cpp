@@ -9,13 +9,25 @@
 #include "../DnaContainer.h"
 
 New::New(std::vector<std::string> args) {
-    DnaSequence dnaSequence(args[1]);
-    if (args.size() == 2) {
-        MetaDnaSequence metaDnaSequence(&dnaSequence);
-        DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
-    } else {
-        MetaDnaSequence metaDnaSequence(&dnaSequence, args[2]);
-        DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
+    try {
+        DnaSequence dnaSequence(args[1]);
+        MetaDnaSequence *metaDnaSequence;
+        switch (args.size()) {
+            case 2 :
+                metaDnaSequence = new MetaDnaSequence(&dnaSequence);
+                DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
+                break;
+            case 3:
+                metaDnaSequence = new MetaDnaSequence(&dnaSequence, args[2]);
+                DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
+                break;
+            default:
+                std::cout << "new <sequence> [@<sequence_name>]" << std::endl;
+
+        }
+    }
+    catch (std::invalid_argument invalid_argument) {
+        std::cout << invalid_argument.what() << ", no data was added" << std::endl;
     }
 }
 

@@ -8,8 +8,14 @@
 #include "DnaSequence.h"
 
 class MetaDnaSequence : public DnaSequence {
+    friend std::ostream &operator<<(std::ostream &os, const MetaDnaSequence &sequence);
+
+
 public:
-    MetaDnaSequence(DnaSequence *dnaSequence, const std::string& name);
+    MetaDnaSequence &operator=(const MetaDnaSequence &t);
+
+    MetaDnaSequence(DnaSequence *dnaSequence, const std::string &name);
+
     MetaDnaSequence(DnaSequence *dnaSequence);
 
     std::string getName() const;

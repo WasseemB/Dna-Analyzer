@@ -18,7 +18,7 @@ public:
 
     explicit DnaSequence(const std::string &sequence);
 
-    ~DnaSequence();
+    virtual ~DnaSequence();
 
     DnaSequence(const DnaSequence &dnaSequence);
 

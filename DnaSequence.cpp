@@ -10,7 +10,7 @@
 
 DnaSequence::DnaSequence(const char *sequence) {
     if (!isValid(sequence)) {
-        std::cout << "char * sequence constructor";
+        //std::cout << "char * sequence constructor";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
     size_t sequence_len = strlen(sequence);
@@ -20,7 +20,7 @@ DnaSequence::DnaSequence(const char *sequence) {
 
 DnaSequence::DnaSequence(const std::string &sequence) {
     if (!isValid(sequence.c_str())) {
-        std::cout << "std::string sequence constructor";
+       // std::cout << "std::string sequence constructor";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
     size_t sequence_len = sequence.length();
@@ -29,7 +29,7 @@ DnaSequence::DnaSequence(const std::string &sequence) {
 }
 
 DnaSequence::~DnaSequence() {
-    delete[]this->m_sequence;
+    //delete[]this->m_sequence;
 
 }
 
@@ -49,7 +49,7 @@ bool DnaSequence::isValid(const char *sequence) {
 
 DnaSequence::DnaSequence(const DnaSequence &dnaSequence) {
     if (!isValid(dnaSequence.m_sequence)) {
-        std::cout << "copy operator dna";
+        //std::cout << "copy operator dna";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
 //    delete[]this->m_sequence;
@@ -75,7 +75,7 @@ DnaSequence &DnaSequence::operator=(const DnaSequence &dnaSequence) {
 
 DnaSequence &DnaSequence::operator=(const char *sequence) {
     if (!isValid(sequence)) {
-        std::cout << "copy operator char";
+        //std::cout << "copy operator char";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
     delete[]this->m_sequence;
@@ -87,7 +87,7 @@ DnaSequence &DnaSequence::operator=(const char *sequence) {
 
 DnaSequence &DnaSequence::operator=(const std::string &sequence) {
     if (!isValid(sequence.c_str())) {
-        std::cout << "copy operator string";
+        //std::cout << "copy operator string";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
     delete[]this->m_sequence;

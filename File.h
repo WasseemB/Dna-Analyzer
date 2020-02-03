@@ -15,6 +15,8 @@ public:
 
     std::string readFile(const char *fileName);
 
+    bool exists(const std::string &name);
+
     void writeFile(const char *fileName, const char data[]);
 };
 

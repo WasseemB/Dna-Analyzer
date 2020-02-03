@@ -6,6 +6,9 @@
 #include "CLI.h"
 #include "CommandParser.h"
 #include "Commands/CommandExecuter.h"
+#include "DnaSequence.h"
+#include "MetaDnaSequence.h"
+#include "DnaContainer.h"
 #include <vector>
 
 void print(std::vector<std::string> input) {
@@ -20,6 +23,19 @@ int main() {
     CommandParser parser;
     std::string data;
     std::vector<std::string> commands;
+
+//    DnaSequence dnaSequence("ACT");
+//    MetaDnaSequence metaDnaSequence(&dnaSequence);
+//    std::cout << metaDnaSequence << std::endl;
+//
+//    DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
+//    DnaContainer::addDna(2, &metaDnaSequence);
+//
+//    size_t i = 0;
+//    for (; DnaContainer::getContainer().size(); i++)
+//        std::cout << DnaContainer::getContainer()[i].first << " "
+//                  << DnaContainer::getContainer()[i].second->getSequence() << std::endl;
+
     while (true && data != "q") {
         data = cli.input();
         commands = parser.parse(data);

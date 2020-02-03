@@ -23,9 +23,19 @@ std::string File::readFile(const char *fileName) {
     return ss.str();
 }
 
+bool File::exists(const std::string &name) {
+    if (FILE *file = fopen(name.c_str(), "r")) {
+        fclose(file);
+        return true;
+    } else {
+        return false;
+    }
+}
+
 void File::writeFile(const char *fileName, const char *data) {
     ofstream outputFile;
     outputFile.open(fileName);
     outputFile << data;
+    outputFile.flush();
     outputFile.close();
 }

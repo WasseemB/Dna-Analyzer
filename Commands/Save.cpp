@@ -4,6 +4,8 @@
 
 #include "Save.h"
 #include <iostream>
+#include <string>
+#include <cstdlib>
 #include "Load.h"
 #include "../DnaSequence.h"
 #include "../MetaDnaSequence.h"
@@ -12,16 +14,14 @@
 
 Save::Save(std::vector<std::string> args) {
     File file;
-    std::string data = args[1];
-    DnaSequence dnaSequence(data);
-//    if (args.size() == 2) {
-//        MetaDnaSequence metaDnaSequence(&dnaSequence);
-//        DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
-//    } else {
-//        MetaDnaSequence metaDnaSequence(&dnaSequence, args[2]);
-//        DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
-//    }
-    file.writeFile(args[2].c_str(), data.c_str());
+    size_t value = std::atoi(args[1].c_str());
+    MetaDnaSequence metaDnaSequence(DnaContainer::findById(value));
+    //Logic here has an issue.
+    if (&metaDnaSequence != NULL)
+        file.writeFile(args[2].c_str(), metaDnaSequence.getSequence());
+    else {
+        std::cout << "Sequence doesn't exist" << std::endl;
+    }
 }
 
 void Save::run() {

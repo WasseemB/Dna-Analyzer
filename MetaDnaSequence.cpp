@@ -5,6 +5,7 @@
 #include "MetaDnaSequence.h"
 #include <string>
 #include <sstream>
+#include <iostream>
 
 size_t MetaDnaSequence::s_ID = 1;
 
@@ -28,10 +29,24 @@ MetaDnaSequence::MetaDnaSequence(DnaSequence *dnaSequence, const std::string &na
 
 }
 
+
+std::ostream &operator<<(std::ostream &os, const MetaDnaSequence &sequence) {
+    os << "[" << sequence.getId() << "] " << sequence.getName() << " " << sequence.getSequence();
+    return os;
+}
+
 std::string MetaDnaSequence::getName() const {
     return this->m_name;
 }
 
 size_t MetaDnaSequence::getId() const {
     return this->m_id;
+}
+
+MetaDnaSequence &MetaDnaSequence::operator=(const MetaDnaSequence &t) {
+
+    std::cout << "Assignment operator called " << std::endl;
+    *this = t;
+    return *this;
+
 }
