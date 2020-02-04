@@ -14,11 +14,8 @@ Save::Save(std::vector<std::string> args) {
     size_t value = std::atoi(args[1].c_str());
     RealDnaSequence *metaDnaSequence = (DnaContainer::findById(value));
     //Logic here has an issue.
-    if (&metaDnaSequence != NULL)
-        file.writeFile(args[2].c_str(), metaDnaSequence->getDnaSequence()->getSequence());
-    else {
-        std::cout << "Sequence doesn't exist" << std::endl;
-    }
+    file.writeFile(args[2].c_str(), metaDnaSequence->getDnaSequence()->getSequence());
+
 }
 
 void Save::run() {

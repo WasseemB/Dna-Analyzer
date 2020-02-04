@@ -22,16 +22,6 @@ int main() {
     std::string data;
     std::vector<std::string> commands;
 
-    DnaSequence dnaSequence("ACT");
-//
-//    DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
-//    DnaContainer::addDna(2, &metaDnaSequence);
-//
-//    size_t i = 0;
-//    for (; DnaContainer::getContainer().size(); i++)
-//        std::cout << DnaContainer::getContainer()[i].first << " "
-//                  << DnaContainer::getContainer()[i].second->getSequence() << std::endl;
-
     while (true && data != "q") {
         data = cli.input();
         commands = parser.parse(data);
