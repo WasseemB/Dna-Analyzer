@@ -6,19 +6,16 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include "Load.h"
-#include "../DnaSequence.h"
-#include "../MetaDnaSequence.h"
 #include "../DnaContainer.h"
 #include "../File.h"
 
 Save::Save(std::vector<std::string> args) {
     File file;
     size_t value = std::atoi(args[1].c_str());
-    MetaDnaSequence metaDnaSequence(DnaContainer::findById(value));
+    RealDnaSequence *metaDnaSequence = (DnaContainer::findById(value));
     //Logic here has an issue.
     if (&metaDnaSequence != NULL)
-        file.writeFile(args[2].c_str(), metaDnaSequence.getSequence());
+        file.writeFile(args[2].c_str(), metaDnaSequence->getDnaSequence()->getSequence());
     else {
         std::cout << "Sequence doesn't exist" << std::endl;
     }

@@ -8,20 +8,20 @@
 #include <cstddef>
 #include <vector>
 #include <utility>
-#include "MetaDnaSequence.h"
+#include "Model/RealDnaSequence.h"
 #include <map>
 
 
 class DnaContainer {
 public:
-    static void addDna(size_t id, MetaDnaSequence *metaDnaSequence);
+    static void addDna(size_t id, RealDnaSequence *metaDnaSequence);
 
-    static std::vector<std::pair<size_t, MetaDnaSequence *> > getContainer();
+    static std::map<size_t, RealDnaSequence *> getContainer();
 
-    static MetaDnaSequence findById(size_t id);
+    static RealDnaSequence* findById(size_t id);
 
 private:
-    static std::vector<std::pair<size_t, MetaDnaSequence *> > s_container;
+    static std::map<size_t, RealDnaSequence *> s_container;
 };
 
 #endif //DNASEQUENCE_DNACONTAINER_H

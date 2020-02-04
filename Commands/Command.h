@@ -10,9 +10,9 @@
 
 class Command {
 public:
-    Command(){};
+    Command() {};
 
-    virtual void run();
+    virtual void run() = 0;
 };
 
 #endif //DNASEQUENCE_COMMAND_H

@@ -8,8 +8,9 @@
 #include <string>
 #include <ostream>
 #include <vector>
+#include "IDna.h"
 
-class DnaSequence {
+class DnaSequence : public IDna {
 
     friend std::ostream &operator<<(std::ostream &os, const DnaSequence &sequence);
 
@@ -19,6 +20,9 @@ public:
     explicit DnaSequence(const std::string &sequence);
 
     virtual ~DnaSequence();
+
+    virtual void execute();
+
 
     DnaSequence(const DnaSequence &dnaSequence);
 
@@ -62,7 +66,6 @@ public:
     bool isValid(const char *sequence);
 
     std::vector<std::string> findConsensus() const;
-
 
 private:
     char *m_sequence;

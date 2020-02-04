@@ -4,8 +4,7 @@
 
 #include <iostream>
 #include "Load.h"
-#include "../DnaSequence.h"
-#include "../MetaDnaSequence.h"
+#include "../Model/DnaSequence.h"
 #include "../DnaContainer.h"
 #include "../File.h"
 
@@ -15,15 +14,14 @@ Load::Load(std::vector<std::string> args) {
         std::string data = file.readFile(args[1].c_str());
         std::cout << data << std::endl;
         try {
-            DnaSequence dnaSequence(data);
-            MetaDnaSequence *metaDnaSequence;
+            RealDnaSequence *metaDnaSequence;
             switch (args.size()) {
                 case 2:
-                    metaDnaSequence = new MetaDnaSequence(&dnaSequence);
+                    metaDnaSequence = new RealDnaSequence(new DnaSequence(data));
                     DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
                     break;
                 case 3:
-                    metaDnaSequence = new MetaDnaSequence(&dnaSequence, args[2]);
+                    metaDnaSequence = new RealDnaSequence(new DnaSequence(data), args[2]);
                     DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
                     break;
                 default:

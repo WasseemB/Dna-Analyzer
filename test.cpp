@@ -1,5 +1,5 @@
 #include <iostream>
-#include "DnaSequence.h"
+#include "Model/DnaSequence.h"
 #include <gtest/gtest.h>
 #include "File.h"
 #include "gmock/gmock-matchers.h"

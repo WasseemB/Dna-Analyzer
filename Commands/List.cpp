@@ -13,14 +13,10 @@ void List::run() {
     print(DnaContainer::getContainer());
 }
 
-void List::print(std::vector<std::pair<size_t, MetaDnaSequence *> > container) {
-    size_t i = 0;
-    size_t container_length = container.size();
-    for (; i < container_length; i++) {
-        MetaDnaSequence *metaDnaSequence = container[i].second;
-        std::cout << "[" << metaDnaSequence->getId() << "]" << " " << ": "
-                  << metaDnaSequence->getName()
-                  << std::endl;
+void List::print(std::map<size_t, RealDnaSequence *> container) {
+    for (std::map<size_t, RealDnaSequence *>::const_iterator it = container.begin();
+         it != container.end(); ++it) {
+        std::cout << *(it->second) << std::endl;
     }
 }
 

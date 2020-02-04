@@ -9,7 +9,6 @@
 #include "Save.h"
 #include "ErrorCommand.h"
 #include "List.h"
-
 Command *CommandExecuterFactory::executeCommand(std::vector<std::string> args) {
     if (args[0] == "new")
         return new New(args);

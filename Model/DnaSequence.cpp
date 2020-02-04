@@ -7,6 +7,7 @@
 #include <sstream>
 #include <iterator>
 #include "DnaSequence.h"
+#include "IDna.h"
 
 DnaSequence::DnaSequence(const char *sequence) {
     if (!isValid(sequence)) {
@@ -20,7 +21,7 @@ DnaSequence::DnaSequence(const char *sequence) {
 
 DnaSequence::DnaSequence(const std::string &sequence) {
     if (!isValid(sequence.c_str())) {
-       // std::cout << "std::string sequence constructor";
+        // std::cout << "std::string sequence constructor";
         throw std::invalid_argument("Nucleotide type is A, C, G or T");
     }
     size_t sequence_len = sequence.length();
@@ -231,5 +232,9 @@ std::vector<std::string> DnaSequence::findConsensus() const {
         }
     }
     return result;
+}
+
+void DnaSequence::execute() {
+    std::cout << "Just execute!" << std::endl;
 }
 

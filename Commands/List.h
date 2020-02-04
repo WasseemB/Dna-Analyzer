@@ -9,7 +9,7 @@
 #include <vector>
 #include "Command.h"
 #include <map>
-#include "../MetaDnaSequence.h"
+#include "../Model/RealDnaSequence.h"
 
 class List : public Command {
 public:
@@ -17,7 +17,7 @@ public:
 
     void run();
 
-    void print(std::vector<std::pair<size_t, MetaDnaSequence *> > container);
+    void print(std::map<size_t, RealDnaSequence *> container);
 
 private:
     std::vector<std::string> m_args;

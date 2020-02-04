@@ -6,9 +6,7 @@
 #include "CLI.h"
 #include "CommandParser.h"
 #include "Commands/CommandExecuter.h"
-#include "DnaSequence.h"
-#include "MetaDnaSequence.h"
-#include "DnaContainer.h"
+#include "Model/DnaSequence.h"
 #include <vector>
 
 void print(std::vector<std::string> input) {
@@ -24,9 +22,7 @@ int main() {
     std::string data;
     std::vector<std::string> commands;
 
-//    DnaSequence dnaSequence("ACT");
-//    MetaDnaSequence metaDnaSequence(&dnaSequence);
-//    std::cout << metaDnaSequence << std::endl;
+    DnaSequence dnaSequence("ACT");
 //
 //    DnaContainer::addDna(metaDnaSequence.getId(), &metaDnaSequence);
 //    DnaContainer::addDna(2, &metaDnaSequence);

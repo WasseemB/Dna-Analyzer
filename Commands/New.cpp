@@ -4,21 +4,20 @@
 
 #include <iostream>
 #include "New.h"
-#include "../DnaSequence.h"
-#include "../MetaDnaSequence.h"
+#include "../Model/DnaSequence.h"
 #include "../DnaContainer.h"
+#include "../Model/RealDnaSequence.h"
 
 New::New(std::vector<std::string> args) {
     try {
-        DnaSequence dnaSequence(args[1]);
-        MetaDnaSequence *metaDnaSequence;
+        RealDnaSequence *metaDnaSequence;
         switch (args.size()) {
             case 2 :
-                metaDnaSequence = new MetaDnaSequence(&dnaSequence);
+                metaDnaSequence = new RealDnaSequence(new DnaSequence(args[1]));
                 DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
                 break;
             case 3:
-                metaDnaSequence = new MetaDnaSequence(&dnaSequence, args[2]);
+                metaDnaSequence = new RealDnaSequence(new DnaSequence(args[1]), args[2]);
                 DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
                 break;
             default:
