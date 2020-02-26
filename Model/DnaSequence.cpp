@@ -30,7 +30,7 @@ DnaSequence::DnaSequence(const std::string &sequence) {
 }
 
 DnaSequence::~DnaSequence() {
-    //delete[]this->m_sequence;
+    delete[]this->m_sequence;
 
 }
 

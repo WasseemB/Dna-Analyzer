@@ -8,7 +8,8 @@
 #include "../DnaContainer.h"
 #include "../Model/RealDnaSequence.h"
 
-New::New(std::vector<std::string> args) {
+New::
+New(std::vector<std::string> args) {
     try {
         RealDnaSequence *metaDnaSequence;
         switch (args.size()) {
