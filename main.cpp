@@ -22,14 +22,13 @@ int main() {
     std::string data;
     std::vector<std::string> commands;
 
-    while (true && data != "q") {
+    while (data != "q") {
         data = cli.input();
         commands = parser.parse(data);
         print(commands);
-        Command *command = CommandExecuterFactory::executeCommand(commands);
-        command->run();
+        Command *command = CommandExecuterFactory::executeCommand(commands[0]);
+        command->run(commands);
     }
-
     std::cout << "Goodbye.\n";
     return 0;
 

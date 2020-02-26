@@ -9,15 +9,12 @@
 #include "../DnaContainer.h"
 #include "../File.h"
 
-Save::Save(std::vector<std::string> args) {
+
+void Save::run(std::vector<std::string> args) {
     File file;
     size_t value = std::atoi(args[1].c_str());
     RealDnaSequence *metaDnaSequence = (DnaContainer::findById(value));
     //Logic here has an issue.
     file.writeFile(args[2].c_str(), metaDnaSequence->getDnaSequence()->getSequence());
-
-}
-
-void Save::run() {
     std::cout << "The save command just ran !" << std::endl;
 }

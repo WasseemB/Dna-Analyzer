@@ -10,15 +10,15 @@
 #include "ErrorCommand.h"
 #include "List.h"
 
-Command *CommandExecuterFactory::executeCommand(std::vector<std::string> args) {
-    if (args[0] == "new")
-        return new New(args);
-    else if (args[0] == "load")
-        return new Load(args);
-    else if (args[0] == "save")
-        return new Save(args);
-    else if (args[0] == "list")
+Command *CommandExecuterFactory::executeCommand(const std::string &command) {
+    if (command == "new")
+        return new New();
+    else if (command == "load")
+        return new Load();
+    else if (command == "save")
+        return new Save();
+    else if (command == "list")
         return new List();
-    return new ErrorCommand(args);
+    return new ErrorCommand();
 
 }

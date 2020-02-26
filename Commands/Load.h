@@ -10,12 +10,10 @@
 
 class Load : public Command {
 public:
-    Load(std::vector<std::string> args);
+    Load() {};
 
-    void run();
-
-private:
-    std::vector<std::string> m_args;
+    void run(std::vector<std::string> args);
 
 };
+
 #endif //DNASEQUENCE_LOAD_H

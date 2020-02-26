@@ -10,12 +10,9 @@
 
 class ErrorCommand : public Command {
 public:
-    ErrorCommand(std::vector<std::string> args);
+    ErrorCommand() {};
 
-    void run();
-
-private:
-    std::vector<std::string> m_args;
+    void run(std::vector<std::string> args);
 
 };
 

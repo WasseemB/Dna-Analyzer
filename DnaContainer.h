@@ -18,7 +18,7 @@ public:
 
     static std::map<size_t, RealDnaSequence *> getContainer();
 
-    static RealDnaSequence* findById(size_t id);
+    static RealDnaSequence *findById(size_t id);
 
 private:
     static std::map<size_t, RealDnaSequence *> s_container;

@@ -9,6 +9,7 @@
 
 class CommandExecuterFactory {
 public:
-    static Command* executeCommand(std::vector<std::string> args);
+    static Command *executeCommand(const std::string& command);
 };
+
 #endif //DNASEQUENCE_COMMANDEXECUTER_H

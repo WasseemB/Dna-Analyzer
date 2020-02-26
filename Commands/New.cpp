@@ -8,8 +8,8 @@
 #include "../DnaContainer.h"
 #include "../Model/RealDnaSequence.h"
 
-New::
-New(std::vector<std::string> args) {
+
+void New::run(std::vector<std::string> args) {
     try {
         RealDnaSequence *metaDnaSequence;
         switch (args.size()) {
@@ -29,8 +29,5 @@ New(std::vector<std::string> args) {
     catch (std::invalid_argument invalid_argument) {
         std::cout << invalid_argument.what() << ", no data was added" << std::endl;
     }
-}
-
-void New::run() {
     std::cout << "The new command just ran !" << std::endl;
 }

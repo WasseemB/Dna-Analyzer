@@ -8,9 +8,10 @@
 #include "../DnaContainer.h"
 #include "../File.h"
 
-Load::Load(std::vector<std::string> args) {
+
+void Load::run(std::vector<std::string> args) {
     File file;
-    if (file.exists(args[1].c_str())) {
+    if (file.exists(args[1])) {
         std::string data = file.readFile(args[1].c_str());
         std::cout << data << std::endl;
         try {
@@ -36,8 +37,5 @@ Load::Load(std::vector<std::string> args) {
         std::cout << args[1] << " does not exist" << std::endl;
 
     }
-}
-
-void Load::run() {
     std::cout << "The load command just ran !" << std::endl;
 }

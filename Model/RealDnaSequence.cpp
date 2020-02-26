@@ -9,7 +9,7 @@
 
 size_t RealDnaSequence::s_ID = 1;
 
-RealDnaSequence::RealDnaSequence(IDna *iDna, std::string name) : DecoratorDnaSequence(iDna) {
+RealDnaSequence::RealDnaSequence(IDna *iDna, const std::string& name) : DecoratorDnaSequence(iDna) {
     m_iDna = iDna;
 
     if (name.empty()) {

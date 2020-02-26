@@ -9,13 +9,9 @@
 
 class New : public Command {
 public:
-    New(std::vector<std::string> args);
+    New() {};
 
-    void run();
-
-private:
-    std::vector<std::string> m_args;
-
+    void run(std::vector<std::string> args);
 };
 
 #endif //DNASEQUENCE_NEW_H

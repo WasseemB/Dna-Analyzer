@@ -6,10 +6,7 @@
 #include <iostream>
 #include "ErrorCommand.h"
 
-ErrorCommand::ErrorCommand(std::vector <std::string> args) {
 
-}
-
-void ErrorCommand::run() {
+void ErrorCommand::run(std::vector<std::string> args) {
     std::cout << "Wrong command " << std::endl;
 }

@@ -13,14 +13,10 @@
 
 class List : public Command {
 public:
-    List();
+    List() {};
 
-    void run();
+    void run(std::vector<std::string> args);
 
-    void print(std::map<size_t, RealDnaSequence *> container);
-
-private:
-    std::vector<std::string> m_args;
 
 };
 

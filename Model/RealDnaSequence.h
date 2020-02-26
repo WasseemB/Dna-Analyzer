@@ -13,7 +13,7 @@ class RealDnaSequence : public DecoratorDnaSequence {
     friend std::ostream &operator<<(std::ostream &os, const RealDnaSequence &sequence);
 
 public:
-    RealDnaSequence(IDna *iDna, std::string name = "");
+    RealDnaSequence(IDna *iDna, const std::string& name = "");
 
     virtual void execute();
 

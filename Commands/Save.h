@@ -8,12 +8,9 @@
 
 class Save : public Command {
 public:
-    Save(std::vector<std::string> args);
+    Save() {};
 
-    void run();
-
-private:
-    std::vector<std::string> m_args;
+    void run(std::vector<std::string> args);
 
 };
 #endif //DNASEQUENCE_SAVE_H
