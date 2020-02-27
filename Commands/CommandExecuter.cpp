@@ -10,15 +10,25 @@
 #include "ErrorCommand.h"
 #include "List.h"
 
-Command *CommandExecuterFactory::executeCommand(const std::string &command) {
-    if (command == "new")
-        return new New();
-    else if (command == "load")
-        return new Load();
-    else if (command == "save")
-        return new Save();
-    else if (command == "list")
-        return new List();
-    return new ErrorCommand();
 
+static std::map<std::string, Command *> initMap() {
+    std::map<std::string, Command *> commandMap;
+    commandMap["new"] = new New();
+    commandMap["load"] = new Load();
+    commandMap["save"] = new Save();
+    commandMap["list"] = new List();
+    return commandMap;
 }
+
+std::map<std::string, Command *> CommandExecuterFactory::initCommandMap = initMap();
+
+Command *CommandExecuterFactory::executeCommand(const std::string &command) {
+    Command *cmd = initCommandMap[command];
+    if (cmd)
+        return cmd;
+    return new ErrorCommand();
+}
+
+
+
+

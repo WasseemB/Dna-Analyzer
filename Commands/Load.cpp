@@ -8,7 +8,6 @@
 #include "../DnaContainer.h"
 #include "../File.h"
 
-
 void Load::run(std::vector<std::string> args) {
     File file;
     if (file.exists(args[1])) {
