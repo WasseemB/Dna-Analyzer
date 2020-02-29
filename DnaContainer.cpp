@@ -11,7 +11,7 @@ std::map<std::string, RealDnaSequence *>  DnaContainer::s_stringContainer;
 
 void DnaContainer::addDna(size_t id, RealDnaSequence *metaDnaSequence) {
     s_container[id] = metaDnaSequence;
-    std::cout << *metaDnaSequence << std::endl;
+//    std::cout << *metaDnaSequence << std::endl;
 }
 
 
@@ -27,7 +27,12 @@ RealDnaSequence *DnaContainer::findById(size_t id) {
     return (DnaContainer::getContainer().find(id)->second);
 }
 
-RealDnaSequence *DnaContainer::findByString(const std::string& name) {
+RealDnaSequence *DnaContainer::findByString(const std::string &name) {
+    std::map<std::string, RealDnaSequence *>::iterator it;
+    std::map<std::string, RealDnaSequence *> container = DnaContainer::getStringContainer();
+    it = container.find(name);
+    if (it == container.end())
+        return NULL;
     return (DnaContainer::getStringContainer().find(name)->second);
 }
 

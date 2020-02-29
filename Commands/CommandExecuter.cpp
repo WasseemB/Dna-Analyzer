@@ -9,6 +9,7 @@
 #include "Save.h"
 #include "ErrorCommand.h"
 #include "List.h"
+#include "Dup.h"
 
 
 static std::map<std::string, Command *> initMap() {
@@ -17,6 +18,7 @@ static std::map<std::string, Command *> initMap() {
     commandMap["load"] = new Load();
     commandMap["save"] = new Save();
     commandMap["list"] = new List();
+    commandMap["dup"] = new Dup();
     return commandMap;
 }
 

@@ -14,6 +14,9 @@ public:
 
     void run(std::vector<std::string> args);
 
+    int parse(std::vector<std::string> args) { return 1; };
+
+
 };
 
 #endif //DNASEQUENCE_ERRORCOMMAND_H

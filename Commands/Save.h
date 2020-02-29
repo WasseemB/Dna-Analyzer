@@ -4,6 +4,7 @@
 
 #ifndef DNASEQUENCE_SAVE_H
 #define DNASEQUENCE_SAVE_H
+
 #include "Command.h"
 
 class Save : public Command {
@@ -12,5 +13,8 @@ public:
 
     void run(std::vector<std::string> args);
 
+    int parse(std::vector<std::string> args) { return 1; };
+
 };
+
 #endif //DNASEQUENCE_SAVE_H

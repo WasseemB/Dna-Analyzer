@@ -24,10 +24,13 @@ int main() {
 
     while (data != "q") {
         data = cli.input();
+        if (data == "q")
+            break;
         commands = parser.parse(data);
         print(commands);
         Command *command = CommandExecuterFactory::executeCommand(commands[0]);
-        command->run(commands);
+        if (command->parse(commands))
+            command->run(commands);
     }
     std::cout << "Goodbye.\n";
     return 0;

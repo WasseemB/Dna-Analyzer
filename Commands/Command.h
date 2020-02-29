@@ -8,11 +8,17 @@
 #include <vector>
 #include <string>
 
+enum {
+    False, True
+};
+
 class Command {
 public:
     Command() {};
 
     virtual void run(std::vector<std::string> args) = 0;
+
+    virtual int parse(std::vector<std::string> args) = 0;
 };
 
 #endif //DNASEQUENCE_COMMAND_H

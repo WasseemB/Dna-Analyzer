@@ -1,15 +1,15 @@
 //
-// Created by parallels on 2/2/20.
+// Created by Wasseem Bazbaz on 29/02/2020.
 //
 
-#ifndef DNASEQUENCE_NEW_H
-#define DNASEQUENCE_NEW_H
+#ifndef DNASEQUENCE_DUP_H
+#define DNASEQUENCE_DUP_H
 
 #include "Command.h"
 
-class New : public Command {
+class Dup : public Command {
 public:
-    New() {};
+    Dup() {};
 
     void run(std::vector<std::string> args);
 
@@ -20,4 +20,4 @@ private:
 
 };
 
-#endif //DNASEQUENCE_NEW_H
+#endif //DNASEQUENCE_DUP_H
