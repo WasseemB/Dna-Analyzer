@@ -6,8 +6,17 @@
 #include "List.h"
 #include "../DnaContainer.h"
 
+using namespace std;
+
 void print(std::map<size_t, RealDnaSequence *> container) {
     for (std::map<size_t, RealDnaSequence *>::const_iterator it = container.begin();
+         it != container.end(); ++it) {
+        std::cout << *(it->second) << std::endl;
+    }
+}
+
+void print(std::map<string, RealDnaSequence *> container) {
+    for (std::map<string, RealDnaSequence *>::const_iterator it = container.begin();
          it != container.end(); ++it) {
         std::cout << *(it->second) << std::endl;
     }

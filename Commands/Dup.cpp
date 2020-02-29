@@ -49,6 +49,7 @@ void Dup::run(vector<string> args) {
         }
         metaDnaSequence = new RealDnaSequence(new DnaSequence(new_sequence->getDnaSequence()->getSequence()),
                                               seq_name);
+//        maybe one is added but not the other check it later.
         DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
         DnaContainer::addDna(metaDnaSequence->getName(), metaDnaSequence);
 

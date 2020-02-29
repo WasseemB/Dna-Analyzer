@@ -24,10 +24,14 @@ void New::run(vector<string> args) {
                 metaDnaSequence = new RealDnaSequence(new DnaSequence(args[1]), sequence_name);
                 break;
         }
-        DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
-        DnaContainer::addDna(metaDnaSequence->getName(), metaDnaSequence);
+        if (!DnaContainer::findByString(metaDnaSequence->getName())) {
+            DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
+            DnaContainer::addDna(metaDnaSequence->getName(), metaDnaSequence);
+        } else {
+            cout << metaDnaSequence->getName() << ", already exists" << endl;
+        }
     }
-    catch (invalid_argument invalid_argument) {
+    catch (invalid_argument &invalid_argument) {
         cout << invalid_argument.what() << ", no data was added" << endl;
     }
 }
