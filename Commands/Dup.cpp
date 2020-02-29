@@ -17,42 +17,47 @@ bool isDigit(const string &line) {
     return *p == 0;
 }
 
+
+string getSubSequenceName(string seq_name) {
+
+    seq_name.append("_");
+    size_t count = 1;
+    string new_seq_name = seq_name + (to_string(count));
+    RealDnaSequence *res = DnaContainer::findByString(new_seq_name);
+    while (res != NULL) {
+        count++;
+        new_seq_name = seq_name + (to_string(count));
+        res = DnaContainer::findByString(new_seq_name);
+    }
+    return new_seq_name;
+}
+
 void Dup::run(vector<string> args) {
     try {
         RealDnaSequence *metaDnaSequence = NULL;
         const string &seq = args[1].substr(1);
-        const string &real_seq_name = args[2].substr(1);
+        string seq_name;
         size_t seq_id = strtoul(seq.c_str(), NULL, 0);
         RealDnaSequence *new_sequence = DnaContainer::findById(seq_id);
         switch (args.size()) {
-            case 2 : {
-                string seq_name = new_sequence->getName();
-                seq_name.append("_");
-                size_t count = 1;
-                string new_seq_name = seq_name + (to_string(count));
-                RealDnaSequence *res = DnaContainer::findByString(new_seq_name);
-                while (res != NULL) {
-                    count++;
-                    new_seq_name = seq_name + (to_string(count));
-                    res = DnaContainer::findByString(new_seq_name);
-                }
-                metaDnaSequence = new RealDnaSequence(new DnaSequence(new_sequence->getDnaSequence()->getSequence()),
-                                                      new_seq_name);
+            case 2 :
+                seq_name = getSubSequenceName(new_sequence->getName());
                 break;
-            }
             case 3:
-                metaDnaSequence = new RealDnaSequence(new DnaSequence(new_sequence->getDnaSequence()->getSequence()),
-                                                      real_seq_name);
+                seq_name = args[2].substr(1);
                 break;
         }
+        metaDnaSequence = new RealDnaSequence(new DnaSequence(new_sequence->getDnaSequence()->getSequence()),
+                                              seq_name);
         DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
         DnaContainer::addDna(metaDnaSequence->getName(), metaDnaSequence);
 
     }
-    catch (invalid_argument invalid_argument) {
+    catch (invalid_argument &invalid_argument) {
         cout << invalid_argument.what() << ", no data was added" << endl;
     }
 }
+
 
 int Dup::parse(vector<string> args) {
 
