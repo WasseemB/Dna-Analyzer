@@ -24,6 +24,11 @@ std::map<std::string, RealDnaSequence *> DnaContainer::getStringContainer() {
 }
 
 RealDnaSequence *DnaContainer::findById(size_t id) {
+    std::map<size_t, RealDnaSequence *>::iterator it;
+    std::map<size_t, RealDnaSequence *> container = DnaContainer::getContainer();
+    it = container.find(id);
+    if (it == container.end())
+        return NULL;
     return (DnaContainer::getContainer().find(id)->second);
 }
 

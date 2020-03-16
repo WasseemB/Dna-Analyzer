@@ -10,6 +10,9 @@
 #include "ErrorCommand.h"
 #include "List.h"
 #include "Dup.h"
+#include "Slice.h"
+#include "Help.h"
+#include "Show.h"
 
 
 static std::map<std::string, Command *> initMap() {
@@ -19,16 +22,24 @@ static std::map<std::string, Command *> initMap() {
     commandMap["save"] = new Save();
     commandMap["list"] = new List();
     commandMap["dup"] = new Dup();
+    commandMap["slice"] = new Slice();
+    commandMap["help"] = new Help();
+    commandMap["show"] = new Show();
     return commandMap;
 }
 
 std::map<std::string, Command *> CommandExecuterFactory::initCommandMap = initMap();
 
+
 Command *CommandExecuterFactory::executeCommand(const std::string &command) {
-    Command *cmd = initCommandMap[command];
-    if (cmd)
-        return cmd;
-    return new ErrorCommand();
+    if (initCommandMap.count(command) == 1) {
+        Command *cmd = initCommandMap[command];
+        if (cmd)
+            return cmd;
+    } else {
+        std::cout << "Command does not exist " << std::endl;
+        return NULL;
+    }
 }
 
 

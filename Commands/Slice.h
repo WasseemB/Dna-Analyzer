@@ -2,14 +2,14 @@
 // Created by Wasseem Bazbaz on 29/02/2020.
 //
 
-#ifndef DNASEQUENCE_DUP_H
-#define DNASEQUENCE_DUP_H
+#ifndef DNASEQUENCE_SLICE_H
+#define DNASEQUENCE_SLICE_H
 
 #include "Command.h"
 
-class Dup : public Command {
+class Slice : public Command {
 public:
-    Dup() {};
+    Slice() {};
 
     void run(std::vector<std::string> args);
 
@@ -25,4 +25,4 @@ private:
 
 };
 
-#endif //DNASEQUENCE_DUP_H
+#endif //DNASEQUENCE_SLICE_H

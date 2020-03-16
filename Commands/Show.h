@@ -1,15 +1,15 @@
 //
-// Created by Wasseem Bazbaz on 29/02/2020.
+// Created by Wasseem Bazbaz on 16/03/2020.
 //
 
-#ifndef DNASEQUENCE_DUP_H
-#define DNASEQUENCE_DUP_H
+#ifndef DNASEQUENCE_SHOW_H
+#define DNASEQUENCE_SHOW_H
 
 #include "Command.h"
 
-class Dup : public Command {
+class Show : public Command {
 public:
-    Dup() {};
+    Show() {};
 
     void run(std::vector<std::string> args);
 
@@ -25,4 +25,4 @@ private:
 
 };
 
-#endif //DNASEQUENCE_DUP_H
+#endif //DNASEQUENCE_SHOW_H

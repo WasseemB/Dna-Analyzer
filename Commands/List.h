@@ -20,6 +20,13 @@ public:
 
     int parse(std::vector<std::string> args) { return 1; };
 
+    std::string getHelp();
+    std::string getInfo();
+
+private:
+    static const std::string s_HELP;
+    static const std::string s_INFO;
+
 };
 
 #endif //DNASEQUENCE_LIST_H

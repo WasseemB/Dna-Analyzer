@@ -10,8 +10,11 @@
 
 using namespace std;
 const string Dup::s_HELP = "dup <#seq> [@<new_seq_name>]";
+const string Dup::s_INFO = "duplicates the sequence.\n "
+                           "If a new name is not provided, then it will be based on the name of <seq>,"
+                           " suffixed by _1 (or _2, _3, ... if the name is already taken).";
 
-bool isDigit(const string &line) {
+static bool isDigit(const string &line) {
     char *p;
     strtol(line.c_str(), &p, 10);
     return *p == 0;
@@ -59,9 +62,7 @@ void Dup::run(vector<string> args) {
     }
 }
 
-
 int Dup::parse(vector<string> args) {
-
     int res = False;
     switch (args.size()) {
         case 2 :
@@ -69,27 +70,31 @@ int Dup::parse(vector<string> args) {
                 const string &seq = args[1].substr(1);
                 if (isDigit(seq)) {
                     res = True;
-                    break;
                 } else {
                     cout << "after # is not a digit" << endl;
-                    break;
-
                 }
             } else {
                 cout << s_HELP << endl;
-                break;
             }
+            break;
         case 3:
             if (args[2][0] == '@') {
                 res = True;
-                break;
             } else {
                 cout << s_HELP << endl;
-                break;
             }
+            break;
         default:
             cout << s_HELP << endl;
     }
     return res;
 
+}
+
+std::string Dup::getHelp() {
+    return Dup::s_HELP;
+}
+
+std::string Dup::getInfo() {
+    return Dup::s_INFO;
 }

@@ -14,6 +14,8 @@ public:
     static Command *executeCommand(const std::string &command);
 
     static std::map<std::string, Command *> initCommandMap;
+private:
+    Command *command;
 };
 
 

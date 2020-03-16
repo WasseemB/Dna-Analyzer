@@ -1,28 +1,28 @@
 //
-// Created by Wasseem Bazbaz on 29/02/2020.
+// Created by Wasseem Bazbaz on 16/03/2020.
 //
 
-#ifndef DNASEQUENCE_DUP_H
-#define DNASEQUENCE_DUP_H
+#ifndef DNASEQUENCE_HELP_H
+#define DNASEQUENCE_HELP_H
 
 #include "Command.h"
 
-class Dup : public Command {
+
+class Help : public Command {
 public:
-    Dup() {};
+    Help() {};
 
     void run(std::vector<std::string> args);
+
 
     int parse(std::vector<std::string> args);
 
     std::string getHelp();
-
     std::string getInfo();
 
 private:
     static const std::string s_HELP;
     static const std::string s_INFO;
-
 };
 
-#endif //DNASEQUENCE_DUP_H
+#endif //DNASEQUENCE_HELP_H

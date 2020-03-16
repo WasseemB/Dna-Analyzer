@@ -29,8 +29,10 @@ int main() {
         commands = parser.parse(data);
         print(commands);
         Command *command = CommandExecuterFactory::executeCommand(commands[0]);
-        if (command->parse(commands))
-            command->run(commands);
+        if (command)
+            if (command->parse(commands))
+                command->run(commands);
+
     }
     std::cout << "Goodbye.\n";
     return 0;

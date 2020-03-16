@@ -9,6 +9,8 @@
 #include "../File.h"
 
 const std::string Load::s_HELP = "load <file_name>  [@<sequence_name>]";
+const std::string Load::s_INFO = "loads the sequence from the file, assigns it with a number (ID) and a default name.\n"
+                                 "If one was not provided (based on the file name, possibly postfixed with a number if the name already exists), and prints it.";
 
 void Load::run(std::vector<std::string> args) {
     File file;
@@ -19,10 +21,12 @@ void Load::run(std::vector<std::string> args) {
         switch (args.size()) {
             case 2:
                 metaDnaSequence = new RealDnaSequence(new DnaSequence(data));
+                metaDnaSequence->updateState(UP_TO_DATE);
                 DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
                 break;
             case 3:
                 metaDnaSequence = new RealDnaSequence(new DnaSequence(data), args[2].substr(1));
+                metaDnaSequence->updateState(UP_TO_DATE);
                 DnaContainer::addDna(metaDnaSequence->getId(), metaDnaSequence);
                 break;
         }
@@ -57,5 +61,13 @@ int Load::parse(std::vector<std::string> args) {
         std::cout << args[1] << " does not exist" << std::endl;
     }
     return res;
-
 }
+
+std::string Load::getHelp() {
+    return Load::s_HELP;
+}
+
+std::string Load::getInfo() {
+    return Load::s_INFO;
+}
+

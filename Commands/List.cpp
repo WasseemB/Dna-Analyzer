@@ -7,11 +7,17 @@
 #include "../DnaContainer.h"
 
 using namespace std;
+const std::string List::s_HELP = "list";
+const std::string List::s_INFO = "shows all the sequences in the system, by order.\n";
 
 void print(std::map<size_t, RealDnaSequence *> container) {
-    for (std::map<size_t, RealDnaSequence *>::const_iterator it = container.begin();
-         it != container.end(); ++it) {
-        std::cout << *(it->second) << std::endl;
+    if (container.empty()) {
+        cout << "No items inside the container" << endl;
+    } else {
+        for (std::map<size_t, RealDnaSequence *>::const_iterator it = container.begin();
+             it != container.end(); ++it) {
+            std::cout << *(it->second) << std::endl;
+        }
     }
 }
 
@@ -24,6 +30,14 @@ void print(std::map<string, RealDnaSequence *> container) {
 
 void List::run(std::vector<std::string> args) {
     print(DnaContainer::getContainer());
+}
+
+std::string List::getHelp() {
+    return List::s_HELP;
+}
+
+std::string List::getInfo() {
+    return List::s_INFO;
 }
 
 

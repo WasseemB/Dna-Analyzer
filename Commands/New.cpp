@@ -10,6 +10,7 @@
 
 using namespace std;
 const string New::s_HELP = "new <sequence> [@<sequence_name>]";
+const string New::s_INFO = "Creates a new sequence, as described by the followed sequence.\n";
 
 void New::run(vector<string> args) {
     try {
@@ -40,20 +41,26 @@ int New::parse(vector<string> args) {
 
     int res = False;
     switch (args.size()) {
-        case 2 :
+        case 2:
             res = True;
             break;
         case 3:
             if (args[2][0] == '@') {
                 res = True;
-                break;
             } else {
                 cout << s_HELP << endl;
-                break;
             }
+            break;
         default:
             cout << s_HELP << endl;
     }
     return res;
+}
 
+std::string New::getHelp() {
+    return New::s_HELP;
+}
+
+std::string New::getInfo() {
+    return New::s_INFO;
 }

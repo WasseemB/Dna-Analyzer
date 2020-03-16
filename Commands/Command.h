@@ -19,6 +19,12 @@ public:
     virtual void run(std::vector<std::string> args) = 0;
 
     virtual int parse(std::vector<std::string> args) = 0;
+
+    virtual std::string getHelp() = 0;
+
+    virtual std::string getInfo() = 0;
+
 };
+
 
 #endif //DNASEQUENCE_COMMAND_H

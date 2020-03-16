@@ -9,11 +9,16 @@
 #include "DecoratorDnaSequence.h"
 #include "DnaSequence.h"
 
+enum State {
+    UP_TO_DATE, MODIFIED, NEW
+};
+
 class RealDnaSequence : public DecoratorDnaSequence {
+
     friend std::ostream &operator<<(std::ostream &os, const RealDnaSequence &sequence);
 
 public:
-    RealDnaSequence(IDna *iDna, const std::string& name = "");
+    RealDnaSequence(IDna *iDna, const std::string &name = "", enum State state = NEW);
 
     virtual void execute();
 
@@ -29,11 +34,17 @@ public:
         return ((DnaSequence *) (m_iDna));
     }
 
+    RealDnaSequence(IDna *iDna, const std::string &name, size_t id, enum State state = NEW);
+
+    void updateState(enum State state);
+    std::string getStatusString();
+
 private:
     IDna *m_iDna;
     std::string m_name;
     size_t m_id;
     static size_t s_ID;
+    enum State m_state;
 
 };
 
