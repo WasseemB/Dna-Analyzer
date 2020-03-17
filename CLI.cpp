@@ -11,3 +11,7 @@ std::string CLI::input() {
     }
     return "";
 }
+
+void CLI::output(std::string text) {
+    std::cout << text << std::endl;
+}

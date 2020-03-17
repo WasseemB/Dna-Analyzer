@@ -2,6 +2,7 @@
 // Created by Wasseem Bazbaz on 16/03/2020.
 //
 #include <iostream>
+#include <sstream>
 #include "Show.h"
 #include "../Model/RealDnaSequence.h"
 #include "../DnaContainer.h"
@@ -37,11 +38,14 @@ void Show::run(std::vector<std::string> args) {
         }
         string sequenceData(new_sequence->getDnaSequence()->getSequence());
         switch (args.size()) {
-            case 2 :
-                cout << "[" << new_sequence->getId() << "] " << new_sequence->getName() << " "
-                     << new_sequence->getStatusString() << endl;
-                cout << sequenceData.substr(0, 99) << endl;
+            case 2 : {
+                stringstream ss;
+                ss << "[" << new_sequence->getId() << "] " << new_sequence->getName() << " "
+                   << new_sequence->getStatusString() << endl;
+                ss << sequenceData.substr(0, 99) << endl;
+                m_cli->output(ss.str());
                 break;
+            }
             case 3:
                 size_t seqLength = strtoul(args[2].c_str(), NULL, 0);
                 cout << "[" << new_sequence->getId() << "] " << new_sequence->getName() << " "

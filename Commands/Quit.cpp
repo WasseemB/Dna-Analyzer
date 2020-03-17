@@ -10,6 +10,7 @@ using namespace std;
 const string Quit::s_HELP = "quit";
 const string Quit::s_INFO = "prints a goodbye message and exists the application.";
 
+
 std::string Quit::getHelp() {
     return Quit::s_HELP;
 }
@@ -42,12 +43,27 @@ void Quit::run(std::vector<std::string> args) {
 
         }
     }
-    if (countMod + countUp > 0)
-        cout << "There are " << countMod << "modified and " << countNew
+    cout << countMod << " " << countNew << endl;
+    if (countMod + countNew > 0)
+        cout << "There are " << countMod << " modified and " << countNew
              << " new sequences. Are you sure you want to quit?\n"
                 "Please confirm by 'y' or 'Y', or cancel by 'n' or 'N'."
              << endl;
-    else
+    else {
         cout << "Thank you for using Dnalanyzer. \n"
                 "Goodbye!" << endl;
+        exit(0);
+    }
+    string inp;
+    cin >> inp;
+    while (true) {
+        if ((inp == "Y") || (inp == "y")) {
+            cout << "Thank you for using Dnalanyzer. \n"
+                    "Goodbye!" << endl;
+            exit(0);
+        } else if ((inp == "N") || (inp == "n"))
+            break;
+        cout << "You have typed an invalid response. Please either confirm by 'y'/'Y', or cancel by 'n'/'N'." << endl;
+        cin >> inp;
+    }
 }

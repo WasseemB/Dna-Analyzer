@@ -6,10 +6,11 @@
 #define DNASEQUENCE_SHOW_H
 
 #include "Command.h"
+#include "../CLI.h"
 
 class Show : public Command {
 public:
-    Show() {};
+    Show(CLI *cli) { m_cli = cli; };
 
     void run(std::vector<std::string> args);
 
@@ -20,6 +21,7 @@ public:
     std::string getInfo();
 
 private:
+    CLI *m_cli;
     static const std::string s_HELP;
     static const std::string s_INFO;
 

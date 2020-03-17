@@ -17,6 +17,7 @@
 
 
 static std::map<std::string, Command *> initMap() {
+    CLI cli;
     std::map<std::string, Command *> commandMap;
     commandMap["new"] = new New();
     commandMap["load"] = new Load();
@@ -25,7 +26,7 @@ static std::map<std::string, Command *> initMap() {
     commandMap["dup"] = new Dup();
     commandMap["slice"] = new Slice();
     commandMap["help"] = new Help();
-    commandMap["show"] = new Show();
+    commandMap["show"] = new Show(&cli);
     commandMap["quit"] = new Quit();
     return commandMap;
 }

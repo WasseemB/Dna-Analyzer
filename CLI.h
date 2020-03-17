@@ -10,5 +10,6 @@
 class CLI {
 public:
     std::string input();
+    void output(std::string);
 };
 #endif //DNASEQUENCE_CLI_H
