@@ -38,6 +38,7 @@ public:
 
     void updateState(enum State state);
     std::string getStatusString();
+    enum State getStatus();
 
 private:
     IDna *m_iDna;

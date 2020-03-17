@@ -83,6 +83,10 @@ std::string RealDnaSequence::getStatusString() {
     return stateString;
 }
 
+enum State RealDnaSequence::getStatus() {
+    return this->m_state;
+}
+
 
 
 

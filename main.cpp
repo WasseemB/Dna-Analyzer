@@ -28,7 +28,7 @@ int main() {
             break;
         commands = parser.parse(data);
         print(commands);
-        Command *command = CommandExecuterFactory::executeCommand(commands[0]);
+        Command *command = CommandExecuterFactory::createCommand(commands[0]);
         if (command)
             if (command->parse(commands))
                 command->run(commands);

@@ -13,6 +13,7 @@
 #include "Slice.h"
 #include "Help.h"
 #include "Show.h"
+#include "Quit.h"
 
 
 static std::map<std::string, Command *> initMap() {
@@ -25,13 +26,14 @@ static std::map<std::string, Command *> initMap() {
     commandMap["slice"] = new Slice();
     commandMap["help"] = new Help();
     commandMap["show"] = new Show();
+    commandMap["quit"] = new Quit();
     return commandMap;
 }
 
 std::map<std::string, Command *> CommandExecuterFactory::initCommandMap = initMap();
 
 
-Command *CommandExecuterFactory::executeCommand(const std::string &command) {
+Command *CommandExecuterFactory::createCommand(const std::string &command) {
     if (initCommandMap.count(command) == 1) {
         Command *cmd = initCommandMap[command];
         if (cmd)
